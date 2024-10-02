@@ -1,14 +1,19 @@
 import { View, Text, TouchableOpacity } from 'react-native'
 import { styles } from './styles'
 
-export function Participant() {
+type ParticipantProps = {
+    name: string,
+    onRemove: () => void
+}
+
+export function Participant({ name, onRemove }: ParticipantProps) {
     function handleParticipantRemove() {
-        console.log('Clicou em remover')
+        onRemove()
     }
 
     return (
         <View style={styles.container}>
-            <Text style={styles.name}>Douglas Faria</Text>
+            <Text style={styles.name}>{name}</Text>
 
             <TouchableOpacity style={styles.button} onPress={handleParticipantRemove}>
                 <Text style={styles.buttonText}>-</Text>
