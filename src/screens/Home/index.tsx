@@ -3,14 +3,17 @@ import { Text, View, TextInput, TouchableOpacity, FlatList, Alert } from "react-
 import { styles } from "./styles";
 
 import { Participant } from "../../components/Participant";
+import { useState } from "react";
 
 export function Home() {
-  const participants = ['Douglas', 'Rodrigo', 'Diego', 'João', 'Ana', 'Bianca', 'Bruno', 'Hugo', 'Mariana', 'Juliana']
+  const [participants, setParticipants] = useState(['Douglas'])
 
   function handleParticipantAdd() {
     if (participants.includes("Douglas")) {
       return Alert.alert('Atenção', 'Já exite participante na lista com esse nome!')
     }
+
+    setParticipants(prev => [...prev, newParticipant])
   }
 
   function participantRemove(name: string) {
