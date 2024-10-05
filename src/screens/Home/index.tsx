@@ -6,14 +6,16 @@ import { Participant } from "../../components/Participant";
 import { useState } from "react";
 
 export function Home() {
-  const [participants, setParticipants] = useState(['Douglas'])
+  const [participants, setParticipants] = useState<string[]>([])
+  const [participantName, setParticipantName] = useState('')
 
   function handleParticipantAdd() {
-    if (participants.includes("Douglas")) {
+    if (participants.includes(participantName)) {
       return Alert.alert('Atenção', 'Já exite participante na lista com esse nome!')
     }
 
-    setParticipants(prev => [...prev, newParticipant])
+    setParticipants(prev => [...prev, participantName])
+    setParticipantName('')
   }
 
   function participantRemove(name: string) {
@@ -34,6 +36,8 @@ export function Home() {
           style={styles.input}
           placeholder="Nome do participante"
           placeholderTextColor="#6B6B6B"
+          onChangeText={setParticipantName}
+          value={participantName}
         />
 
         <TouchableOpacity style={styles.button} onPress={handleParticipantAdd}>
