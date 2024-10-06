@@ -18,9 +18,9 @@ export function Home() {
     setParticipantName('')
   }
 
-  function participantRemove(name: string) {
+  function handleParticipantRemove(name: string) {
     Alert.alert('Remover', `Deseja remover o participante ${name}?`, [
-      { text: 'Sim', onPress: () => console.log("Deletou"), style: 'destructive'},
+      { text: 'Sim', onPress: () => setParticipants(prev => prev.filter(participant => participant !== name)), style: 'destructive'},
       { text: 'Não', style: 'cancel'},
     ])
   }
@@ -49,7 +49,7 @@ export function Home() {
         data={participants}
         keyExtractor={item => item}
         renderItem={({ item }) => (
-          <Participant key={item} name={item} onRemove={() => participantRemove(item)} />
+          <Participant key={item} name={item} onRemove={() => handleParticipantRemove(item)} />
         )}
         showsVerticalScrollIndicator={false}
         ListEmptyComponent={() => (
